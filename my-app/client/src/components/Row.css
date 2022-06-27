@@ -1,0 +1,17 @@
+.row{
+    
+    display: flex;
+    justify-content: center;
+    
+}
+
+.row >div {
+    margin: 1px;
+    text-transform: uppercase; 
+}
+
+h4{
+    
+        border-style: solid;
+        border-color: rgb(240, 194, 177);
+}
