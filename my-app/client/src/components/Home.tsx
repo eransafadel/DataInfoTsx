@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchGender, fetchNationality } from "../api/index";
 import "./Home.css";
 import DataUI from "./DataUI";
+import { toNamespacedPath } from "path/posix";
 
 export interface Data {
     name: string;
@@ -25,15 +26,16 @@ export interface Data {
     
     setGender(genderData);
     setNation(nationData);
+    setRender(!render);
    
    
   };
   const handleChange = (e:any) => {
-    setName(e.target.value);
+   setName(e.target.value);
   };
 
-  const after = ()=>{
-    console.log("name:",name,"gender:",gender,"nation:",nation);
+  const enterNewItem = ()=>{
+    
     if(name===''||gender===''|| nation==='' )
       return;
     let obj :Data = { name, gender , nation };
@@ -42,18 +44,19 @@ export interface Data {
 
   useEffect(()=>{
 
-    after();
-  },[gender,nation]);
+    enterNewItem();
+    setName("");
+  },[render]);
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-    setRender( !render);
+    getDataName();
     
   };
 
   useEffect(() => {
     getDataName();
-  }, [render]);
+  }, []);
 
 
   console.log(namesData);
