@@ -15,17 +15,12 @@ app.get("/gender", async (req, res) => {
 
   
     const name = req.query.value;
-    console.log(name);
     const url = `https://api.genderize.io/?name=${name}`;
-    console.log(url);
-   
+     
     try {
       const {data}  = await axios.get(url);
-      console.log("backend data is:",data['gender']);
-
       res.send(data['gender']);
     } catch (error) {
-      console.log("error BackEnd!")
       res.status(404).json('404!');
     }
   });
@@ -40,10 +35,9 @@ app.get("/gender", async (req, res) => {
     try {
       const {data}  = await axios.get(url);
      
-      console.log("backend data is:",data['country'][0]['country_id']);
+  
       res.send(data);
     } catch (error) {
-      console.log("error BackEnd!");
       res.status(404).json('404!');
     }
   });

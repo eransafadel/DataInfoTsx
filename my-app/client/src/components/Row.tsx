@@ -1,6 +1,6 @@
 import React from 'react';
 import './Row.css';
-import {Data} from '../components/Home';
+import {Data} from '../Utility/macros';
 interface Props {
     key: number;
     row:Data;

@@ -2,21 +2,28 @@ import React, { useEffect, useState } from "react";
 import { fetchGender, fetchNationality } from "../api/index";
 import "./Home.css";
 import DataUI from "./DataUI";
-import { toNamespacedPath } from "path/posix";
+import {Data} from '../Utility/macros';
 
-export interface Data {
-    name: string;
-    gender: string;
-    nation: string;
-}
+ import {useDispatch,useSelector} from "react-redux";
+ import {RootState} from "../state/store";
+ import {addItem} from "../state/features/dataSlice";
+// import { bindActionCreators } from "redux";
+// import { actionCreators,State } from "../state";
+
+
+
 
   const Home: React.FC = () =>  {
   const [render, setRender] = useState(true);
 
-  const [name, setName] = useState<string>("Eran");
+  const [name, setName] = useState<string>("");
   const [gender, setGender] = useState<string>("");
   const [nation, setNation] = useState<string>("");
-  const [namesData, setNamesData] = useState<Array<Data>>([]);// need to init?
+  const [namesData, setNamesData] = useState<Array<Data>>([]);
+
+  
+  const dispatch = useDispatch();
+  const data = useSelector((state:RootState) => state.data.value);
 
   const getDataName = async () => {
    
@@ -40,7 +47,11 @@ export interface Data {
       return;
     let obj :Data = { name, gender , nation };
     setNamesData([...namesData, obj]);
+    dispatch(addItem(obj));
   }
+
+
+  console.log("data is heyy:",data);
 
   useEffect(()=>{
 
@@ -59,7 +70,6 @@ export interface Data {
   }, []);
 
 
-  console.log(namesData);
   return (
     <div>
       <form onSubmit={handleSubmit}>
