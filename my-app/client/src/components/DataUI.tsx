@@ -8,11 +8,11 @@ interface Props {
 const DataUI: React.FC<Props> = ({namesData}) => {
    const data = Array.from(namesData);
   return (
-    <div>
+    <>
          {data?.map((row,index)=>{
-            return <Row key={index} row={row} />
+            return <Row key={row.name} row={row} />
         })}
-    </div>
+    </>
   )
 }
 

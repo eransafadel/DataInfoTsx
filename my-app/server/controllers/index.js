@@ -8,6 +8,8 @@ export const getGender = async (req, res) => {
     
     try {
       const { data } = await axios.get(url);
+      if(data["gender"]===null)
+        res.status(404).json("name without specified gender");
       res.send(data["gender"]);
     } catch (error) {
       res.status(404).json("404!");

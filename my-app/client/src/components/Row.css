@@ -1,17 +1,21 @@
 .row{
     
     display: flex;
-    justify-content: center;
+    justify-content: center; 
+    flex-direction: column;
     
 }
 
 .row >div {
-    margin: 1px;
+    margin: 3px;
+    flex-wrap: wrap;
     text-transform: uppercase; 
 }
 
-h4{
-    
+ h4{
+        
         border-style: solid;
-        border-color: rgb(240, 194, 177);
+        border-color: rgb(203, 116, 85);
+        text-transform: uppercase; 
+        align-self: center;
 }
